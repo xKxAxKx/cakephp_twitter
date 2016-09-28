@@ -1,6 +1,5 @@
 <h2>ログイン</h2>
 
-
 <div class="container">
   <?= $this->Flash->render('Auth');?>
   <?= $this->Form->create('User');?>
