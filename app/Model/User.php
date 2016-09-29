@@ -130,4 +130,14 @@ class User extends AppModel{
     return false;
   }
 
+  public function sendmail($mail){
+    $email = new CakeEmail('default');
+
+    $email->from(['thanks@example.com' => 'Twitter']);
+    $email->to($mail);
+    $email->template('text_mail');
+    $email->subject('登録ありがとうございます！');
+    $email->send();
+  }
+
 }

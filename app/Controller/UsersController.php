@@ -1,4 +1,5 @@
 <?php
+App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController{
 
@@ -43,6 +44,16 @@ class UsersController extends AppController{
     if($this->request->is('post')){
       $this->User->create();
       if($this->User->save($this->request->data)){
+        $mail = $this->request->data['User']['email'];
+
+        $email = new CakeEmail('default');
+
+        $email->from(['thanks@example.com' => 'Twitter']);
+        $email->to($mail);
+        $email->template('thanks_mail');
+        $email->subject('登録ありがとうございます！');
+        $email->send();
+
         $this->Flash->success('ユーザーを登録しました');
         return $this->redirect(['action' => 'login']);
       }
