@@ -35,11 +35,10 @@
 <h4>ユーザ削除</h4>
 <p>一度アカウントを削除すると、二度と元に戻せません。十分ご注意ください。</p>
 <div style="margin-bottom: 30px;">
-  <button type="button" class="btn btn-danger">
   <?= $this->Form->postLink(
     'ユーザを削除する',
     ['action' => 'delete', $currentUser['id']],
+    ['class' => 'btn btn-danger'],
     ['confirm' => '本当に削除してよろしいですか?']
   ); ?>
-  </button>
 </div>

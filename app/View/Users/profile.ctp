@@ -10,6 +10,14 @@
         <h4>プロフィール</h4>
         <?= $users['0']['User']['profile'];?>
       </div>
+      <?php if($currentUser['email'] == 'root@example.com') :?>
+        <?= $this->Form->postLink(
+          'ユーザを削除する',
+          ['action' => 'delete', $users['0']['User']['id']],
+          ['class' => 'btn btn-danger'],
+          ['confirm' => '本当に削除してよろしいですか?']
+        ); ?>
+      <?php endif; ?>
     </div>
   </div>
 </div>
@@ -37,6 +45,24 @@
             ['controller' => 'tweets', 'action' => 'view', $user['Tweet']['id']],
             ['escape' => false]
             );?>
+            <a href="http://192.168.33.10/cakephp_twitter/favorites/view/<?=$user['Tweet']['id']?>"data-toggle="modal" data-target="#favoriteModal">
+              お気に入り(
+                <?php
+                    if($user['Favorite']){
+                      $count = count($user['Favorite']);
+                      echo $count;
+                    } else {
+                      echo '0';
+                    }
+                  ?>
+                )
+            </a>
+            <?php if($user['Tweet']['user_id'] == $currentUser['id'] or $currentUser['email'] == 'root@example.com') :?>
+              <?= $this->Html->Link(
+                'ツイートを編集する',
+                ['controller' => 'tweets', 'action' => 'edit', $user['Tweet']['id']]
+              );?>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -51,3 +77,6 @@
 		<li><?= $this->Paginator->next('次へ >>'); ?></li>
 	</ul>
 </nav>
+<!-- Modal -->
+<?=	$this->element('modal'); ?>
+<!-- Modal -->

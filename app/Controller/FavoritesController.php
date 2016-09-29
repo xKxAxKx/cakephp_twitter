@@ -36,7 +36,6 @@ class FavoritesController extends AppController{
       $this->Flash->error('お気に入りを削除できませんでした');
     }
     $this->redirect($this->referer());
-    // return $this->redirect(['controller' => 'tweets', 'action' => 'view', $tweetId]);
   }
 
   public function view($tweet_id){

@@ -31,15 +31,14 @@
           </a>
           <!-- Button trigger modal -->
           <?php if($tweet['Tweet']['user_id'] == $currentUser['id']) :?>
-            <?= $this->Form->postLink(
-              'ツイートを削除する',
-              ['action' => 'delete', $tweet['Tweet']['id']],
-              ['confirm' => '本当に削除してよろしいですか?']
+            <?= $this->Html->Link(
+              'ツイートを編集する',
+              ['action' => 'edit', $tweet['Tweet']['id']]
             );?>
           <?php endif; ?>
         </div>
       </div>
-      
+
       <?php if($reply):?>
         <div class="panel panel-primary col-xs-10 pull-right">
           <ul class="list-group">

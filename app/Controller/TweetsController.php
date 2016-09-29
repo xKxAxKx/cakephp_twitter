@@ -58,6 +58,23 @@ class TweetsController extends AppController{
 
   }
 
+  public function edit($id = null){
+    if(!$this->Tweet->exists($id)){
+      throw new NotFoundException('存在しないツイートです');
+    }
+
+    if($this->request->is(['post', 'put'])){
+      if($this->Tweet->save($this->request->data)){
+        $this->Flash->success('ツイートを編集しました');
+        $this->redirect($this->referer());
+      }
+    }
+
+    $tweet = $this->Tweet->findById($id);
+    $this->set('tweet', $tweet);
+
+  }
+
   public function search(){
     $this->Prg->commonProcess();
 
@@ -69,7 +86,7 @@ class TweetsController extends AppController{
       $passedArgs = null;
     }
 
-  }//serachここまで
+  }
 
 
 }

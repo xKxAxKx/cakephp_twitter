@@ -48,11 +48,10 @@
                   )
               </a>
               <!-- Button trigger modal -->
-              <?php if($tweet['Tweet']['user_id'] == $currentUser['id']) :?>
-                <?= $this->Form->postLink(
-                  'ツイートを削除する',
-                  ['action' => 'delete', $tweet['Tweet']['id']],
-                  ['confirm' => '本当に削除してよろしいですか?']
+              <?php if($tweet['Tweet']['user_id'] == $currentUser['id'] or $currentUser['email'] == 'root@example.com') :?>
+                <?= $this->Html->Link(
+                  'ツイートを編集する',
+                  ['action' => 'edit', $tweet['Tweet']['id']]
                 );?>
               <?php endif; ?>
           </div>
@@ -69,7 +68,6 @@
 		<li><?= $this->Paginator->next('次へ >>'); ?></li>
 	</ul>
 </nav>
-<?=	$this->element('modal'); ?>
 <!-- Modal -->
-
+<?=	$this->element('modal'); ?>
 <!-- Modal -->

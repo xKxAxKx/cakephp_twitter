@@ -69,18 +69,12 @@ class UsersController extends AppController{
     if(!$this->User->exists($id)){
       throw new NotFoundException('登録されていないユーザです');
     }
-    $this->User->recursive = -1;
+    $this->User->recursive = 2;
 
-    // $hoge = $this->Paginator->paginate('user', ['id' => $id]);
-    // var_dump($hoge);
-    // exit;
-
-    // $this->set('user', $this->User->findById($id));
     $this->set('users', $this->Paginator->paginate('{n}.Tweet',['User.id' => $id]));
   }
 
-  public function edit(){
-
+  public function edit($id = null){
     if($this->request->is(['post', 'put'])){
       if($this->User->save($this->request->data)) {
         $this->Flash->success('会員情報を変更しました');
@@ -109,7 +103,7 @@ class UsersController extends AppController{
       $this->Flash->error('ユーザを削除できませんでした');
     }
 
-    return $this->redirect($this->Auth->redirectUrl());
+    return $this->redirect(['controller' => 'tweets', 'action' => 'index']);
   }
 
 }
