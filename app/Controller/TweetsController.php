@@ -73,6 +73,9 @@ class TweetsController extends AppController{
     $tweet = $this->Tweet->findById($id);
     $this->set('tweet', $tweet);
 
+
+
+
   }
 
   public function search(){

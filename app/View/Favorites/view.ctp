@@ -19,14 +19,14 @@
   <?= $this->Form->postlink(
     'お気に入りに追加',
     ['controller' => 'favorites', 'action' => 'add', 'tweet_id' => $tweet_id],
-    ['class' => 'btn btn-info'],
+    ['class' => 'btn btn-info', 'confirm' => 'お気に入りに追加しますか？'],
     ['escape' => false]
     );?>
   <?php else :?>
     <?= $this->Form->postlink(
     'お気に入りを削除',
     ['controller' => 'favorites', 'action' => 'delete', 'tweet_id' => $tweet_id],
-    ['class' => 'btn btn-default'],
+    ['class' => 'btn btn-default', 'confirm' => 'お気に入りを削除しますか？'],
     ['escape' => false]
     );?>
   <?php endif;?>

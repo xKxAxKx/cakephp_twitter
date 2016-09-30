@@ -38,7 +38,6 @@
   <?= $this->Form->postLink(
     'ユーザを削除する',
     ['action' => 'delete', $currentUser['id']],
-    ['class' => 'btn btn-danger'],
-    ['confirm' => '本当に削除してよろしいですか?']
+    ['class' => 'btn btn-danger', 'confirm' => '本当に削除してよろしいですか?']
   ); ?>
 </div>

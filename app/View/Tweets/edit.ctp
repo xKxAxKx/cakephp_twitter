@@ -1,5 +1,5 @@
 <h2>ツイート更新</h2>
-
+<?php if($tweet['User']['id'] == $currentUser['id'] or $currentUser['email'] == 'root@example.com') :?>
 <div class="container">
   <div class="row">
       <div class="panel panel-primary">
@@ -16,14 +16,6 @@
             (<?= $tweet['Tweet']['created']; ?>)
             <br>
             <?= $tweet['Tweet']['content']; ?>
-            <br>
-              <?php if($tweet['Tweet']['user_id'] == $currentUser['id'] or $currentUser['email'] == 'root@example.com') :?>
-                <?= $this->Form->postLink(
-                  'ツイートを削除する',
-                  ['action' => 'delete', $tweet['Tweet']['id']],
-                  ['confirm' => '本当に削除してよろしいですか?']
-                );?>
-              <?php endif; ?>
           </div>
         </div>
       </div>
@@ -46,9 +38,9 @@
       <?= $this->Form->PostLink(
         'ツイートを削除する',
         ['action' => 'delete', $tweet['Tweet']['id']],
-        ['class' => 'btn btn-danger'],
-        ['confirm' => '本当に削除してよろしいですか?']
+        ['class' => 'btn btn-danger', 'confirm' => '本当に削除してよろしいですか?']
       );?>
     </div>
   </div>
 </div>
+<?php endif;?>
